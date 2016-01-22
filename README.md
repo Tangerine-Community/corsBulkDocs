@@ -10,6 +10,13 @@ Create file called config.rb:
     $host = "host"
     $login = "password"
     
+## Installation
+
+    gem install sinatra
+    gem install sinatra-cross_origin 
+    gem install sinatra-cookies  
+    gem install sinatra-contrib
+    
 ## Execution
 
 Run start.sh. It logs to nohup.out.
