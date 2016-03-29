@@ -17,7 +17,9 @@ cmd = 'node lz.js -d ' + postData
 data = ""
 Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
   data = stdout.read
-  puts "stderr is:" + stderr.read
+  if stdout.read != ''
+    puts "stderr is:" + stderr.read
+  end
 end
 
 puts "data: " + data
