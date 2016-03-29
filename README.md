@@ -12,10 +12,7 @@ Create file called config.rb:
     
 ## Installation
 
-    gem install sinatra
-    gem install sinatra-cross_origin 
-    gem install sinatra-cookies  
-    gem install sinatra-contrib
+    bundle install
     
 ## Execution
 

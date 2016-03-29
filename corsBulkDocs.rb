@@ -26,7 +26,7 @@ set :protection, :except => :json_csrf
 
 JSON_OPTS = { :accept => :json,  :content_type => :json }
 
-
+Rack::Utils.key_space_limit = 68719476736
 
 get "/" do
   {"error"=>true}.to_json
@@ -47,6 +47,8 @@ post "/check/:group" do | group |
   cross_origin
 
   url = "http://#{$login}@#{$host}/#{group}/_all_docs"
+
+  puts "check url:  #{url}"
 
   data = {
     :keys => JSON.parse(params[:keys])
