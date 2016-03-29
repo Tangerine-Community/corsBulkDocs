@@ -12,7 +12,7 @@ require "sinatra/reloader"
 require 'rest-client'
 require 'json'
 require 'logger'
-require 'Open3'
+require 'open3'
 require './config.rb'
 
 #
