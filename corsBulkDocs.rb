@@ -77,6 +77,8 @@ post "/upload/:group" do | group |
 
   #File.open( filePath, 'w' ) { |file| file.write( postData ) }
 
+  File.open( "temp", 'w' ) { |file| file.write( postData ) }
+
   data = `node lz.js -d #{postData}`
 
 
