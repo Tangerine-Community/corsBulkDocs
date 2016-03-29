@@ -12,6 +12,7 @@ require "sinatra/reloader"
 require 'rest-client'
 require 'json'
 require 'logger'
+require 'Open3'
 require './config.rb'
 
 #
@@ -48,7 +49,7 @@ post "/check/:group" do | group |
 
   url = "http://#{$login}@#{$host}/#{group}/_all_docs"
 
-  puts "check url:  #{url}"
+  puts "check group:  #{group}"
 
   data = {
     :keys => JSON.parse(params[:keys])
@@ -79,8 +80,13 @@ post "/upload/:group" do | group |
 
   File.open( "temp", 'w' ) { |file| file.write( postData ) }
 
-  data = `node lz.js -d #{postData}`
-
+  #data = `node lz.js -d #{postData}`
+  cmd = 'node lz.js -d ' + postData
+  data = ""
+  Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+    data = stdout.read
+    puts "stderr is:" + stderr.read
+  end
 
   response = RestClient.post(url, data, JSON_OPTS)
 
