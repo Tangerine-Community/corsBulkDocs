@@ -24,7 +24,6 @@ set :allow_credentials, true
 set :max_age, "1728000"
 set :protection, :except => :json_csrf
 
-
 get "/" do
   {"error"=>true}.to_json
 end
