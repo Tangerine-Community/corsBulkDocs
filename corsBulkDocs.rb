@@ -81,14 +81,19 @@ post "/upload/:group" do | group |
   File.open( "temp", 'w' ) { |file| file.write( postData ) }
 
   #data = `node lz.js -d #{postData}`
-  cmd = 'node lz.js -d ' + postData
-  data = ""
-  Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
-    data = stdout.read
-    if stdout.read != ''
-        puts "stderr is:" + stderr.read
-    end
-  end
+  #cmd = 'node lz.js -d ' + postData
+  #cmd = 'node lz.js ' + postData
+#  data = ""
+#  Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+#    data = stdout.read
+#    if stdout.read != ''
+#        puts "stderr is:" + stderr.read
+#    end
+#  end
+
+  File.open( "temp", 'w' ) { |file| file.write( postData ) }
+
+  data = `node lz.js #{postData}`
 
   response = RestClient.post(url, data, JSON_OPTS)
 
