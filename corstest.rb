@@ -13,14 +13,25 @@ postData = ""
 #stdin, stdout, stderr = Open3.popen3('node lz.js -d #{postData}')
 #puts stdout.gets
 
-cmd = 'node lz.js -d ' + postData
-data = ""
-Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
-  data = stdout.read
-  if stdout.read != ''
-    puts "stderr is:" + stderr.read
-  end
-end
+#cmd = 'node lz.js -d ' + postData
+#cmd = 'node lz.js -d '
+#data = ""
+#Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+#  data = stdout.read
+#  if stdout.read != ''
+#    puts "stderr is:" + stderr.read
+#  end
+#end
+
+File.open( "temp", 'w' ) { |file| file.write( postData ) }
+
+data = `node lz.js #{postData}`
+
+  options = { :accept => :json,  :content_type => :json }
+
+#  response = RestClient.post(url, data, options)
+
+#  parsedResponse = JSON.parse response
 
 puts "data: " + data
 
